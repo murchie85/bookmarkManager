@@ -4,46 +4,84 @@
 <html>
 <head>
     <title>Bookmarks</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+        body {
+            background-color: #000080;
+            color: white;
+            font-family: sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #87ceeb;
+        }
+        td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #87ceeb;
+            background-color: #000080;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #87ceeb;
+        }
+        form {
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #87ceeb;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        button[type="submit"] {
+            padding: 8px;
+            background-color: #87ceeb;
+            border: none;
+            border-radius: 4px;
+            color: #000080;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #87cefa;
+        }
+    </style>
 </head>
 <body>
+
+
+    
     <h1>Bookmarks</h1>
 
     <form action="/add" method="POST">
-        <input type="text" name="url" placeholder="Enter URL" />
-        <input type="text" name="name" placeholder="Enter name" />
-        <input type="text" name="category" placeholder="Enter category" />
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="url" placeholder="URL">
+        <input type="text" name="category" placeholder="Category">
         <button type="submit">Add bookmark</button>
     </form>
 
-    <h2>Bookmarks</h2>
-
-    <div class="bookmarks">
-        <div class="bookmark-header">
-            <div class="bookmark-name">Name</div>
-            <div class="bookmark-category">Category</div>
-        </div>
+    {% for category, bookmarks in categories.items() %}
+    <h2>{{ category }}</h2>
+    <table>
+        <tr>
         {% for bookmark in bookmarks %}
-        <div class="bookmark">
-            <div class="bookmark-name">
-                <a href="{{ bookmark.url }}" target="_blank">{{ bookmark.name }}</a>
-                <span class="delete" onclick="deleteBookmark({{ bookmark.id }})"> - </span>
-            </div>
-            <div class="bookmark-category">{{ bookmark.category }}</div>
-        </div>
+            <td>
+                <a href="{{ bookmark.url }}">{{ bookmark.name }}</a>
+            </td>
+        {% if loop.index % 3 == 0 %}
+        </tr>
+        <tr>
+        {% endif %}
         {% endfor %}
-    </div>
-
-    <script>
-        function deleteBookmark(id) {
-            var url = '/delete?id=' + id;
-            var xhr = new XMLHttpRequest();
-            xhr.open('DELETE', url, true);
-            xhr.send();
-            xhr.onload = function() {
-                location.reload();
-            };
-        }
-    </script>
+        </tr>
+    </table>
+    {% endfor %}
 </body>
 </html>
