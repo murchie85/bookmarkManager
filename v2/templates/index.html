@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookmarks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <h1>Bookmarks</h1>
+
+    <form action="/add" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+        <label for="category">Category:</label>
+        <input type="text" name="category" id="category">
+        <label for="url">URL:</label>
+        <input type="text" name="url" id="url">
+        <button type="submit">Add Bookmark</button>
+    </form>
+
+    <ul>
+        {% for category, bookmarks in categories.items() %}
+            <li>
+                {{ category }}
+                <ul>
+                    {% for id, name, url in bookmarks %}
+                        <li>
+                            <form action="/delete/{{ id }}" method="POST" style="display: inline-block; margin-right: 10px;">
+                                <a href="{{ url }}" style="margin-right: 10px;">{{ name }}</a> 
+                                <button type="submit">Delete</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

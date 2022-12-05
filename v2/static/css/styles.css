@@ -1,0 +1,61 @@
+body {
+    font-family: "Dracula", sans-serif;
+    background-color: #282a36;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+label {
+    margin-bottom: 10px;
+}
+
+input, button {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #eee;
+    text-decoration: none;
+}
+
+form button {
+    background-color: #ff6347;
+    color: white;
+    font-size: 14px;
+    padding: 4px 8px;
+    border: none;
+    cursor: pointer;
+    float: right;
+}

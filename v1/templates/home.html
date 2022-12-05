@@ -1,0 +1,57 @@
+<!-- home.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookmarks</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <h1>Bookmarks</h1>
+
+    <form action="/add" method="POST">
+        <input type="text" name="url" placeholder="Enter URL" />
+        <input type="text" name="name" placeholder="Enter name" />
+        <input type="text" name="category" placeholder="Enter category" />
+        <button type="submit">Add bookmark</button>
+    </form>
+
+    <h2>Bookmarks</h2>
+
+    <div class="bookmarks">
+        <div class="bookmark-header">
+            <div class="bookmark-name">Name</div>
+            <div class="bookmark-category">Category</div>
+            <div class="bookmark-delete">Delete</div>
+        </div>
+    {% for category, bookmarks in categories.items() %}
+    <h2>{{ category }}</h2>
+    <table>
+        <tr>
+        {% for bookmark in bookmarks %}
+            <td>
+                <a href="{{ bookmark.url }}">{{ bookmark.name }}</a>
+            </td>
+        {% if loop.index % 3 == 0 %}
+        </tr>
+        <tr>
+        {% endif %}
+        {% endfor %}
+        </tr>
+    </table>
+    {% endfor %}
+    </div>
+
+    <script>
+        function deleteBookmark(id) {
+            var url = '/delete?id=' + id;
+            var xhr = new XMLHttpRequest();
+            xhr.open('DELETE', url, true);
+            xhr.send();
+            xhr.onload = function() {
+                location.reload();
+            };
+        }
+    </script>
+</body>
+</html>
