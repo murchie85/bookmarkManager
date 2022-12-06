@@ -21,7 +21,7 @@
     <ul>
         {% for category, bookmarks in categories.items() %}
             <li>
-                {{ category }}
+                <h2>{{ category }}</h2>
                 <ul>
                     {% for id, name, url in bookmarks %}
                         <li>
