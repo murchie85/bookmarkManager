@@ -8,6 +8,7 @@ Once finished, users can run the extractor script to create a dynamic, read-only
 - Add bookmark links with a name and category
 - Delete entries with the application
 - Extractor script to create a dynamic HTML page
+- Extractor script can be executed within flask app
 
 ## Built With
 - [Flask](https://flask.palletsprojects.com/)

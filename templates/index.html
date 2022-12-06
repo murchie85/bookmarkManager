@@ -18,6 +18,11 @@
         <button type="submit">Add Bookmark</button>
     </form>
 
+    <br>
+    <form method="POST" action="/run-script">
+      <button type="submit">Run Script</button>
+    </form>
+
     <ul>
         {% for category, bookmarks in categories.items() %}
             <li>
@@ -35,6 +40,8 @@
             </li>
         {% endfor %}
     </ul>
+
+
 </body>
 </html>
 

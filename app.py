@@ -17,6 +17,8 @@ IMAGES AND DOESN'T REQUIRE THE SERVER TO RUN
 
 from flask import Flask, request, redirect, render_template
 import sqlite3
+import subprocess
+import os
 
 # create the Flask app
 app = Flask(__name__)
@@ -111,6 +113,13 @@ def delete(id):
     # redirect the user back to the homepage
     return redirect('/')
 
+
+@app.route('/run-script', methods=['POST'])
+def run_script():
+  # Run the script file from the specified folder
+  os.chdir('scripts')
+  subprocess.call(['python', 'extractor.py'])
+  return 'Script running...'
 
 
 # create the database and table if they don't exist
