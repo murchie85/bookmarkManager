@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 BASEPATH       = str(Path(os.getcwd()).parent.absolute()) + '/'
+t = open(BASEPATH + '.token.txt','r')
+TOKEN = t.read()
 
 import sqlite3
 import requests
