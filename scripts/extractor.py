@@ -69,7 +69,7 @@ for category in bookmarks:
 
         print('getting url for ' + str(bookmark["url"]) + ' which is ' + str(subURL))
 
-        image_url = requests.get("https://shot.screenshotapi.net/screenshot?token=2QMYB4T-VSPMQ87-KZ0W4ZZ-69P1T79&url=https%3A%2F%2F" + subURL + "&output=image&file_type=png&wait_for_event=load")
+        image_url = requests.get("https://shot.screenshotapi.net/screenshot?token=" + TOKEN + "&url=https%3A%2F%2F" + subURL + "&output=image&file_type=png&wait_for_event=load")
         image_url = image_url.url
         # add the bookmark name, url, and preview image to the HTML string
         html += "<a href='" + bookmark["url"] + "'><h3>" + bookmark["name"] + "</h3> <br><img src='" + image_url + "'></a><br>\n\n"
